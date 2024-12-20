@@ -10,6 +10,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @CrossOrigin
 @RequestMapping("api/v1/user")
@@ -20,7 +22,7 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @PostMapping
+    @PostMapping(path = "save-customer")
     public ResponseEntity<StandardResponse> saveUser(@RequestBody UserDTO userDTO) {
 
         String message = userService.saveUser(userDTO);
@@ -28,6 +30,37 @@ public class UserController {
         return new ResponseEntity<StandardResponse>(
                 new StandardResponse(201,"success",message), HttpStatus.CREATED
         );
+
+    }
+
+    @PutMapping(path = "update-customer")
+    public ResponseEntity<StandardResponse> updateUser(@RequestBody UserDTO userDTO) {
+
+        String message = userService.updateUser(userDTO);
+
+        return new ResponseEntity<StandardResponse>(
+                new StandardResponse(201,"success",message), HttpStatus.CREATED
+        );
+
+    }
+
+    @GetMapping(path = "get-user-by-id/{id}")
+    public ResponseEntity<StandardResponse> getUserById(@PathVariable int id) {
+
+        UserDTO userDTO = userService.getUserById(id);
+
+        return new ResponseEntity<StandardResponse>(
+                new StandardResponse(201,"success",userDTO), HttpStatus.CREATED
+        );
+
+    }
+
+    @GetMapping(path = "get-all-users")
+    public List<UserDTO> getAllUsers() {
+
+        List<UserDTO> userDTOList = userService.getAllUsers();
+
+        return userDTOList;
 
     }
 }

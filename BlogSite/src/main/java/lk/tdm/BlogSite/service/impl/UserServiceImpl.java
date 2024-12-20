@@ -11,6 +11,10 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+
 @Service
 public class UserServiceImpl implements UserService {
 
@@ -39,5 +43,74 @@ public class UserServiceImpl implements UserService {
             throw new BadRequestException("User already exists!");
         }
     }
+
+    @Override
+    public String updateUser(UserDTO userDTO) {
+
+        boolean existsUser = userRepo.existsById(userDTO.getUserId());
+
+        if (existsUser) {
+            User user = userRepo.getReferenceById(userDTO.getUserId());
+            user.setUserName(userDTO.getUserName());
+            user.setPassword(userDTO.getPassword());
+            user.setEmail(userDTO.getEmail());
+            user.setPhone(userDTO.getPhone());
+
+            userRepo.save(user);
+            logger.info("User " + userDTO.getUserId() + " updated successfully!");
+            return "User updated successfully!";
+        }else {
+            logger.warn("User " + userDTO.getUserId() + " does not exists!");
+            throw new BadRequestException("User does not exists!");
+        }
+
+    }
+
+    @Override
+    public UserDTO getUserById(int id) {
+
+        Optional<User> userOptional = userRepo.findById(id);
+
+        if (userOptional.isPresent()) {
+            User user = userOptional.get();
+            logger.info("User " + user.getUserId() + " get successfully!");
+            return new UserDTO(
+                    user.getUserId(),
+                    user.getUserName(),
+                    user.getPassword(),
+                    user.getEmail(),
+                    user.getPhone()
+            );
+        }else {
+            logger.warn("User " + id + " does not exists!");
+            throw new BadRequestException("User does not exists!");
+        }
+    }
+
+    @Override
+    public List<UserDTO> getAllUsers() {
+
+        List<User> userList = userRepo.findAll();
+
+        List<UserDTO> userDTOList = new ArrayList<>();
+
+        if (!userList.isEmpty()) {
+            for (User user : userList) {
+                userDTOList.add(new UserDTO(
+                        user.getUserId(),
+                        user.getUserName(),
+                        user.getPassword(),
+                        user.getEmail(),
+                        user.getPhone()
+                ));
+            }
+            logger.info("All Users found!");
+            return userDTOList;
+        }else {
+            logger.warn("All Users not found!");
+            throw new BadRequestException("All Users not found!");
+        }
+    }
+
 
 }
