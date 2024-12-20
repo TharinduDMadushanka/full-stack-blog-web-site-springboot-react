@@ -25,14 +25,8 @@ public class UserController {
 
         String message = userService.saveUser(userDTO);
 
-        if (message != null) {
-            logger.info(userDTO.getUserName()+ " successfully saved as a user!");
-        }else {
-            logger.error("something went wrong while saving a user!");
-        }
-
         return new ResponseEntity<StandardResponse>(
-                new StandardResponse(201,"User saved successfully!",message), HttpStatus.CREATED
+                new StandardResponse(201,"success",message), HttpStatus.CREATED
         );
 
     }

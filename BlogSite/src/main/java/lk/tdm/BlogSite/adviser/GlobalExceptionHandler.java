@@ -1,9 +1,12 @@
 package lk.tdm.BlogSite.adviser;
 
+
+import jdk.jshell.spi.ExecutionControl;
 import lk.tdm.BlogSite.exception.BadRequestException;
 import lk.tdm.BlogSite.exception.InternalServerException;
 import lk.tdm.BlogSite.exception.NotFoundException;
 import lk.tdm.BlogSite.util.StandardResponse;
+import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -12,7 +15,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 
-    @ExceptionHandler(NotFoundException.class)
+    @ExceptionHandler(ChangeSetPersister.NotFoundException.class)
     public ResponseEntity<StandardResponse> handleNotFoundException(NotFoundException e) {
         return new ResponseEntity<>(
                 new StandardResponse(404, "NOT FOUND", e.getMessage()),
@@ -28,7 +31,7 @@ public class GlobalExceptionHandler {
         );
     }
 
-    @ExceptionHandler(InternalServerException.class)
+    @ExceptionHandler(ExecutionControl.InternalException.class)
     public ResponseEntity<StandardResponse> handleInternalServerException(InternalServerException e) {
         return new ResponseEntity<>(
                 new StandardResponse(500, "INTERNAL SERVER ERROR", e.getMessage()),
@@ -36,4 +39,11 @@ public class GlobalExceptionHandler {
         );
     }
 
+    @ExceptionHandler(Exception.class)
+    public ResponseEntity<StandardResponse> handleGlobalException(Exception e) {
+        return new ResponseEntity<>(
+                new StandardResponse(500, "ERROR", "An unexpected error occurred: " + e.getMessage()),
+                HttpStatus.INTERNAL_SERVER_ERROR
+        );
+    }
 }
