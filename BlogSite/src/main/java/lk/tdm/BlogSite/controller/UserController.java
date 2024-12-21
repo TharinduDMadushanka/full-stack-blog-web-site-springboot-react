@@ -63,4 +63,26 @@ public class UserController {
         return userDTOList;
 
     }
+
+    @DeleteMapping(path = "delete-user/{id}")
+    public ResponseEntity<StandardResponse> deleteUser(@PathVariable int id) {
+
+        String message = userService.deleeUser(id);
+
+        return new ResponseEntity<StandardResponse>(
+                new StandardResponse(201,"success",message), HttpStatus.CREATED
+        );
+
+    }
+
+    @GetMapping("/user-login/{email}/{password}")
+    public ResponseEntity<StandardResponse> userLogin(@PathVariable String email, @PathVariable String password) {
+
+        UserDTO userDTO = userService.userLogin(email, password);
+
+        return new ResponseEntity<StandardResponse>(
+                new StandardResponse(201,"Success",userDTO), HttpStatus.CREATED
+        );
+
+    }
 }

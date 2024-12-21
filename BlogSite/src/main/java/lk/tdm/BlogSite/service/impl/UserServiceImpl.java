@@ -112,5 +112,39 @@ public class UserServiceImpl implements UserService {
         }
     }
 
+    @Override
+    public String deleeUser(int id) {
+
+        if (!userRepo.existsById(id)) {
+            logger.warn("User " + id + " does not exists!");
+            throw new BadRequestException("User does not exists!");
+        }else {
+            userRepo.deleteById(id);
+            logger.info("User " + id + " deleted successfully!");
+            return "User deleted successfully!";
+        }
+
+    }
+
+    @Override
+    public UserDTO userLogin(String email, String password) {
+
+        List<User> users = userRepo.getUserByEmailAndAndPassword(email,password);
+
+        if (!users.isEmpty()) {
+            User user = users.get(0);
+            logger.info("User " + user.getUserId() + " login successfully!");
+            return new UserDTO(
+                    user.getUserId(),
+                    user.getUserName(),
+                    user.getPassword(),
+                    user.getEmail(),
+                    user.getPhone()
+            );
+        }else {
+            logger.warn("User " + email + " does not exists!");
+            throw new BadRequestException("User does not exists!");
+        }
+    }
 
 }
