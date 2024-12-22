@@ -22,7 +22,7 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @PostMapping(path = "save-customer")
+    @PostMapping(path = "save-user")
     public ResponseEntity<StandardResponse> saveUser(@RequestBody UserDTO userDTO) {
 
         String message = userService.saveUser(userDTO);
@@ -33,7 +33,7 @@ public class UserController {
 
     }
 
-    @PutMapping(path = "update-customer")
+    @PutMapping(path = "update-user")
     public ResponseEntity<StandardResponse> updateUser(@RequestBody UserDTO userDTO) {
 
         String message = userService.updateUser(userDTO);
