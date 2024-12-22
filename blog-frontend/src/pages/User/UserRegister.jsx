@@ -1,7 +1,11 @@
 import axios from 'axios';
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const UserRegister = () => {
+
+    const navigate = useNavigate();
+
   const [formData, setFormData] = useState({
     userName: '',
     password: '',
@@ -33,6 +37,8 @@ const UserRegister = () => {
         email: '',
         phone: '',
       });
+
+      navigate('/user-login');
 
     } catch (error) {
       console.error('Error saving user:', error);
@@ -135,6 +141,10 @@ const UserRegister = () => {
               I agree to all statements in <a href="#!">Terms of service</a>
             </label>
           </div>
+
+            <div className="nav-log">
+                <p>Already have an account? <a href="" onClick={()=>{navigate('/user-login')}} >Sing In</a> </p>
+            </div>
 
           {/* Submit Button */}
           <div className="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
