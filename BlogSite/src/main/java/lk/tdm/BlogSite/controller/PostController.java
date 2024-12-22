@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.util.List;
 
 @RestController
 @CrossOrigin
@@ -24,6 +25,33 @@ public class PostController {
             @RequestParam("image") MultipartFile image) throws IOException {
         Post createdPost = postService.createPost(postDTO, image);
         return ResponseEntity.ok(createdPost);
+    }
+
+    @PutMapping("/update-post/{id}")
+    public ResponseEntity<Post> updatePost(
+            @PathVariable int id,
+            @ModelAttribute PostDTO postDTO,
+            @RequestParam(value = "image", required = false) MultipartFile image) throws IOException {
+        Post updatedPost = postService.updatePost(id, postDTO, image);
+        return ResponseEntity.ok(updatedPost);
+    }
+
+    @DeleteMapping("/delete-post/{id}")
+    public ResponseEntity<String> deletePost(@PathVariable int id) {
+        postService.deletePost(id);
+        return ResponseEntity.ok("Post deleted successfully");
+    }
+
+    @GetMapping("/get-all-posts")
+    public ResponseEntity<List<Post>> getAllPosts() {
+        List<Post> posts = postService.getAllPosts();
+        return ResponseEntity.ok(posts);
+    }
+
+    @GetMapping("/get-post/{id}")
+    public ResponseEntity<Post> getPostById(@PathVariable int id) {
+        Post post = postService.getPostById(id);
+        return ResponseEntity.ok(post);
     }
 
 }

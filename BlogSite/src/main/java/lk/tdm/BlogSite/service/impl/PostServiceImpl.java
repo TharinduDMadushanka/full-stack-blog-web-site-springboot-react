@@ -15,6 +15,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.util.Date;
+import java.util.List;
 
 
 @Service
@@ -44,6 +45,40 @@ public class PostServiceImpl implements PostService {
         post.setDate(new Date());
 
         return postRepo.save(post);
+    }
+
+    @Override
+    public Post updatePost(int id, PostDTO postDTO, MultipartFile imageFile) throws IOException {
+        Post existingPost = postRepo.findById(id).orElseThrow(() -> new RuntimeException("Post not found"));
+
+        if (postDTO.getTitle() != null) existingPost.setTitle(postDTO.getTitle());
+        if (postDTO.getContent() != null) existingPost.setContent(postDTO.getContent());
+        if (postDTO.getCategory() != null) {
+            PostCategory category = PostCategory.valueOf(postDTO.getCategory().toUpperCase());
+            existingPost.setCategory(category);
+        }
+        if (imageFile != null && !imageFile.isEmpty()) {
+            String imageName = saveImage(imageFile);
+            existingPost.setImage(imageName);
+        }
+
+        return postRepo.save(existingPost);
+    }
+
+    @Override
+    public void deletePost(int id) {
+        Post post = postRepo.findById(id).orElseThrow(() -> new RuntimeException("Post not found"));
+        postRepo.delete(post);
+    }
+
+    @Override
+    public List<Post> getAllPosts() {
+        return postRepo.findAll();
+    }
+
+    @Override
+    public Post getPostById(int id) {
+        return postRepo.findById(id).orElseThrow(() -> new RuntimeException("Post not found"));
     }
 
     // Helper method to save image
