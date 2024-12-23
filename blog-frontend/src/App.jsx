@@ -4,6 +4,7 @@ import LandingPage from './pages/LandingPage/LandingPage'
 import UserRegister from './pages/User/UserRegister'
 import UserLogin from './pages/User/UserLogin'
 import Home from './pages/Home/Home'
+import BlogHome from './pages/BlogHome/BlogHome'
 
 const App = () => {
   return (
@@ -14,6 +15,7 @@ const App = () => {
           <Route path='/home' element={<Home/>} />
           <Route path='/user-register' element={<UserRegister/>} />
           <Route path='/user-login' element={<UserLogin/>} />
+          <Route path='/blog-home' element={<BlogHome/>} />
         </Routes>
       </BrowserRouter>
     </div>

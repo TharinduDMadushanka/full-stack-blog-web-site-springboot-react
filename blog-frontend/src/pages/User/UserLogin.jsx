@@ -33,7 +33,7 @@ const UserLogin = () => {
         console.log('User data:', data.body);
 
         // Navigate to the desired page (e.g., dashboard) on successful login
-        navigate('/home');
+        navigate('/blog-home');
       
     } catch (error) {
       console.error('Login error:', error);

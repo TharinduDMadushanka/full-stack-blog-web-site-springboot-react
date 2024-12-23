@@ -12,6 +12,7 @@ import cat_4 from '../../assets/home/sports.jpg';
 import cat_5 from '../../assets/home/tech.jpg';
 import cat_6 from '../../assets/home/travel.jpg';
 import Footer from '../../components/Footer/Footer';
+import Navbar from '../../components/Navbar/Navbar';
 
 
 const Home = () => {
@@ -41,6 +42,8 @@ const Home = () => {
 
   return (
     <div className='home'>
+
+      <Navbar/>
 
       <video className='background-video' autoPlay loop muted>
         <source src={video2} type='video/mp4' />

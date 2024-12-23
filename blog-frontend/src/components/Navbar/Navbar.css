@@ -1,0 +1,42 @@
+.nav{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 10px 80px;
+    color: white;
+}
+
+.nav-logo{
+    font-family: 'Outfit';
+    font-size: 42px;
+    font-weight: 500;
+}
+
+.nav-menu{
+    display: flex;
+    align-items: center;
+    list-style: none;
+    font-size: 18px;
+    gap: 40px;
+    transition: 0.5s;
+    cursor: pointer;
+}
+
+.nav-menu li{
+    transition: 0.5s;
+}
+
+.nav-menu li:hover{
+    transform: scale(1.1);
+    /* font-size: 20px; */
+    font-weight: 500;
+}
+
+.nav-contact{
+    border-radius: 50px;
+    padding: 7px 25px;
+    height: 40px;
+    background: #fff;
+    color: #262626;
+    margin-top: 20px;
+}
