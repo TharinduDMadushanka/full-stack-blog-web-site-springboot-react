@@ -11,6 +11,7 @@ import cat_3 from '../../assets/home/science.jpg';
 import cat_4 from '../../assets/home/sports.jpg';
 import cat_5 from '../../assets/home/tech.jpg';
 import cat_6 from '../../assets/home/travel.jpg';
+import Footer from '../../components/Footer/Footer';
 
 
 const Home = () => {
@@ -95,6 +96,7 @@ const Home = () => {
 
       </div>
 
+      <Footer/>
 
     </div>
 

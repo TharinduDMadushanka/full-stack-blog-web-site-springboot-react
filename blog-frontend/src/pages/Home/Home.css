@@ -41,7 +41,8 @@
     -webkit-text-fill-color: transparent;
     font-size: 50px;
     font-weight: 500;
-    margin-top: -270px;
+    margin-top: -400px;
+    /* margin-left: 400px; */
 }
 
 .hero-text h1{
@@ -52,14 +53,15 @@
 .hero-explore {
     display: flex;
     align-items: center;
-    gap: 50px;
+    gap: 30px;
     width: fit-content;
     padding: 5px 8px;
     padding-left: 30px;
     border-radius: 60px;
     background-color: hsla(0, 0%, 63%, 0.41);
     cursor: pointer;
-    margin-bottom: -40px; /* Space between bottom of the page and the explore section */
+    margin-bottom: 170px; 
+    /* margin-left: 500px; */
 }
 
 .hero-explore p {
