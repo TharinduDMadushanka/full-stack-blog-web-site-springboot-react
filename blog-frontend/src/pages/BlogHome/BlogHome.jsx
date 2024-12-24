@@ -3,6 +3,9 @@ import './BlogHome.css';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
+import blog_home_bg from '../../assets/blog-home/blog-home-bg.jpg'
+// import blog_home_bg from '../../assets/blog-home/blog-home-bg-3.jpg'
+
 const BlogHome = () => {
   const navigate = useNavigate();
   const [posts, setPosts] = useState([]); // State to store fetched posts
@@ -23,6 +26,11 @@ const BlogHome = () => {
 
   return (
     <div className='blog-home'>
+
+      <div className="blog-home-bg">
+        <img src={blog_home_bg} alt="" />
+      </div>
+
       <div className='blog-nav'>
         <div className="blog-home-logo">TDM</div>
         <div className="nav-menu">
@@ -41,6 +49,11 @@ const BlogHome = () => {
         </p>
       </div>
 
+      <div className="subscribe-box">
+        <input type="text" placeholder='Connect with Us' />
+        <button>Send</button>
+      </div>
+
       <div className="filter-section">
         <ul className='filter-list'>
           <li><i className="bi bi-plus"></i></li>
@@ -51,6 +64,7 @@ const BlogHome = () => {
           <li><i className="bi bi-file-plus"></i></li>
         </ul>
       </div>
+      
 
       <div className="home-blog-area">
         {posts.length > 0 ? (

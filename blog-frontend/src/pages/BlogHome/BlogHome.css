@@ -1,4 +1,31 @@
 
+/* Background Image */
+.blog-home-bg {
+  position: absolute; /* Makes the background image span the viewport */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh; /* Sets the height to the viewport height */
+  z-index: -1; /* Sends it to the back */
+  opacity: 0.7; /* Slight transparency */
+  overflow: hidden;
+}
+
+.blog-home-bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Ensures the image covers the viewport */
+}
+
+.blog-home {
+  position: relative;
+  z-index: 1; /* Ensures the main content is above the background */
+  color: black; /* Adjust text color to ensure readability */
+  min-height: 100vh; /* Ensures the content section also fills the viewport */
+  display: flex;
+  flex-direction: column;
+}
+
 .blog-nav{
     display: flex;
     justify-content: space-between;
@@ -11,10 +38,13 @@
     font-family: 'Outfit';
     font-size: 42px;
     font-weight: 500;
+    /* color: white; */
+    color: black;
 }
 
 .nav-menu input{
-    border: 1px solid black;
+    /* border: none; */
+    border: 1px solid hsla(0, 0%, 0%, 0.555);
     border-radius: 20px;
     height: 40px;
     text-align: center;
@@ -27,6 +57,10 @@
     padding: 5px;
     border-radius: 10px;
 }
+
+/* .nav-menu i{
+  color: white;
+} */
 
 /* ================ hero ==================== */
 
@@ -45,14 +79,50 @@
     margin-top: 15px;
     margin-left: -25px;
     color: hsla(0, 0%, 0%, 0.63);
+    /* color: white; */
     font-size: 15px;
 }
+
+.subscribe-box{
+  margin-top: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+}
+
+.subscribe-box input{
+  width: 300px;
+  height: 50px;
+  border-radius: 20px;
+  border: 1px solid hsla(0, 0%, 0%, 0.555);
+  text-align: center;
+}
+
+.subscribe-box button{
+  width: 80px;
+  height: 40px;
+  border: none;
+  border-radius: 10px;
+  background: hsla(0, 0%, 77%, 0.645);
+}
+
+/* .subscribe-box button:hover{
+  border: 1px solid hsla(0, 0%, 0%, 0.555);
+} */
+
 
 .filter-list{
     display: flex;
     gap: 60px;
-    margin-top: 60px;
+    padding: 30px 50px;
+    margin-top: 250px;
     margin-left: 450px;
+    border: 1px solid hsla(0, 0%, 0%, 0.101);
+    border-radius: 20px;
+    width: 700px;
+    justify-content: center;
+    background: hsla(0, 0%, 96%, 0.573);
 }
 
 .filter-list li{

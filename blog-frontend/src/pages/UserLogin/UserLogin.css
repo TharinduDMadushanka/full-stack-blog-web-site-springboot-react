@@ -57,17 +57,17 @@
     transform: scale(1.05);
 }
 
-.nav-log p {
+.nav-sign p {
     text-align: center;
     margin-top: 10px;
     font-size: 14px;
 }
 
-.nav-log a {
+.nav-sign a {
     color: hsla(0, 0%, 0%, 0.511);
     text-decoration: none;
 }
 
-.nav-log a:hover {
+.nav-sign a:hover {
     text-decoration: underline;
 }

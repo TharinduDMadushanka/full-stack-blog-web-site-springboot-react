@@ -93,7 +93,7 @@ const UserLogin = () => {
           </div>
 
           {/* Sign Up Navigation */}
-          <div className="nav-log">
+          <div className="nav-sign">
             <p>
               Don't have an account?{' '}
               <a href="#!" onClick={() => navigate('/user-register')}>
