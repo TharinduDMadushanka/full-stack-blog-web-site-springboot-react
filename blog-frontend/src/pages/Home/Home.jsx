@@ -13,11 +13,14 @@ import cat_5 from '../../assets/home/tech.jpg';
 import cat_6 from '../../assets/home/travel.jpg';
 import Footer from '../../components/Footer/Footer';
 import Navbar from '../../components/Navbar/Navbar';
+import { useNavigate } from 'react-router-dom';
 
 
 const Home = () => {
 
   // State to keep track of the hovered category
+
+  const navigate = useNavigate();
 
   // Array of paragraphs
   const paragraphs = [
@@ -32,18 +35,33 @@ const Home = () => {
   const [currentParagraph, setCurrentParagraph] = useState(0);
 
   // Use useEffect to change the paragraph every 5 seconds
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentParagraph((prevParagraph) => (prevParagraph + 1) % paragraphs.length);
-    }, 3000); // 5 seconds interval
+  // useEffect(() => {
+  //   const interval = setInterval(() => {
+  //     setCurrentParagraph((prevParagraph) => (prevParagraph + 1) % paragraphs.length);
+  //   }, 3000); // 5 seconds interval
 
-    return () => clearInterval(interval); // Cleanup interval on component unmount
-  }, [paragraphs.length]);
+  //   return () => clearInterval(interval); // Cleanup interval on component unmount
+  // }, [paragraphs.length]);
 
   return (
     <div className='home'>
 
-      <Navbar/>
+      {/* <Navbar/> */}
+
+      <div className='nav'>
+      <div className="nav-logo">TDM</div>
+
+      <ul className="nav-menu">
+        {/* Wrapping navigation call inside an anonymous function */}
+        {/* <li onClick={() => navigate('/')}>Home</li>
+        <li onClick={()=> navigate('/tech')}>Technology</li>
+        <li>Science</li>
+        <li onClick={() => navigate('/travel')}>Travel</li>
+        <li>Entertainment</li>
+        <li>About me</li> */}
+        <button className='nav-contact'>Get Started</button>
+      </ul>
+    </div>
 
       <video className='background-video' autoPlay loop muted>
         <source src={video2} type='video/mp4' />

@@ -22,11 +22,11 @@
     cursor: pointer;
 }
 
-.nav-menu li{
+.nav-menu li,button{
     transition: 0.5s;
 }
 
-.nav-menu li:hover{
+.nav-menu li,button:hover{
     transform: scale(1.1);
     /* font-size: 20px; */
     font-weight: 500;

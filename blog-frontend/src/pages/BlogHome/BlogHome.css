@@ -1,0 +1,71 @@
+
+.blog-nav{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 10px 80px;
+    color: black;
+}
+
+.blog-home-logo{
+    font-family: 'Outfit';
+    font-size: 42px;
+    font-weight: 500;
+}
+
+.nav-menu input{
+    border: 1px solid black;
+    border-radius: 20px;
+    height: 40px;
+    text-align: center;
+}
+
+.nav-menu button{
+    border: none;
+    background: hsla(0, 0%, 50%, 0.685);
+    height: 30px;
+    padding: 5px;
+    border-radius: 10px;
+}
+
+/* ================ hero ==================== */
+
+.blog-home-hero{
+    width: 900px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin-top: 150px;
+    margin-left: 300px;
+    line-height: 30px;
+}
+
+.write-text{
+    margin-top: 15px;
+    margin-left: -25px;
+    color: hsla(0, 0%, 0%, 0.63);
+    font-size: 15px;
+}
+
+.filter-list{
+    display: flex;
+    gap: 60px;
+    margin-top: 60px;
+    margin-left: 450px;
+}
+
+.filter-list li{
+    list-style: none;
+}
+
+.home-blog-area{
+    padding: 30px 50px;
+    margin-top: 50px;
+}
+
+.home-blog-box{
+    width: 100px;
+    height: 100px;
+    border: 1px solid black;
+}
