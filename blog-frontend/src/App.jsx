@@ -7,6 +7,7 @@ import UserLogin from './pages/User/UserLogin'
 import Home from './pages/Home/Home'
 import BlogHome from './pages/BlogHome/BlogHome'
 import AddBlog from './pages/AddBlog/AddBlog';
+import BlogSpace from './pages/BlogSpace/BlogSpace';
 
 const App = () => {
   return (
@@ -19,6 +20,7 @@ const App = () => {
           <Route path='/user-login' element={<UserLogin/>} />
           <Route path='/blog-home' element={<BlogHome/>} />
           <Route path='/add-blog' element={<AddBlog/>} />
+          <Route path='/read-blog/:postId' element={<BlogSpace />} />
         </Routes>
       </BrowserRouter>
     </div>

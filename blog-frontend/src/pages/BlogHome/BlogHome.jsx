@@ -1,18 +1,35 @@
-import React from 'react'
-import './BlogHome.css'
+import React, { useEffect, useState } from 'react';
+import './BlogHome.css';
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 const BlogHome = () => {
+  const navigate = useNavigate();
+  const [posts, setPosts] = useState([]); // State to store fetched posts
+
+  // Fetch posts from backend API
+  useEffect(() => {
+    const fetchPosts = async () => {
+      try {
+        const response = await axios.get('http://localhost:8080/api/v1/post/get-all-posts');
+        setPosts(response.data);
+      } catch (error) {
+        console.error('Error fetching posts:', error);
+      }
+    };
+
+    fetchPosts();
+  }, []);
+
   return (
     <div className='blog-home'>
-
       <div className='blog-nav'>
         <div className="blog-home-logo">TDM</div>
-
         <div className="nav-menu">
           <input type="text" placeholder='Search here...' />
-          <i class="bi bi-pencil-square"></i>
-          <p className='write-text'>Write</p> 
-          <i class="bi bi-person-circle"></i>
+          <i className="bi bi-pencil-square" onClick={() => navigate('/add-blog')}></i>
+          <p className='write-text'>Write</p>
+          <i className="bi bi-person-circle"></i>
         </div>
       </div>
 
@@ -26,25 +43,31 @@ const BlogHome = () => {
 
       <div className="filter-section">
         <ul className='filter-list'>
-          <li><i class="bi bi-plus"></i></li>
+          <li><i className="bi bi-plus"></i></li>
           <li>All</li>
           <li>Technology</li>
           <li>Sports</li>
           <li>Travel</li>
-          <li><i class="bi bi-file-plus"></i></li>
+          <li><i className="bi bi-file-plus"></i></li>
         </ul>
       </div>
 
       <div className="home-blog-area">
-
-        <div className="home-blog-box">
-          
-        </div>
-
+        {posts.length > 0 ? (
+          posts.map((post) => (
+            <div className="home-blog-box" key={post.postId}>
+              <img src={`http://localhost:8080/api/v1/post/${post.image}`} alt={post.title} className="blog-image" />
+              <h3>{post.title}</h3>
+              <p>{post.content.substring(0, 100)}...</p>
+              <button onClick={() => navigate(`/read-blog/${post.postId}`)}>Read More</button>
+            </div>
+          ))
+        ) : (
+          <p>No posts available</p>
+        )}
       </div>
-
     </div>
-  )
-}
+  );
+};
 
-export default BlogHome
+export default BlogHome;
