@@ -59,7 +59,7 @@ const Home = () => {
         <li onClick={() => navigate('/travel')}>Travel</li>
         <li>Entertainment</li>
         <li>About me</li> */}
-        <button className='nav-contact' onClick={() =>navigate('/user-register')}>Get Started</button>
+        <button className='nav-contact' onClick={() =>navigate('/user-login')}>Get Started</button>
       </ul>
     </div>
 

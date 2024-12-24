@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import './UserLogin.css'
+
+import login_bg from '../../assets/login/login-bg.jpg'
 
 const UserLogin = () => {
   const [formData, setFormData] = useState({
@@ -43,9 +46,15 @@ const UserLogin = () => {
 
   return (
     <div className="user-login">
+
+      <div className="login-bg-img">
+        <img src={login_bg} alt="" />
+      </div>
+
       {/* Form Section */}
-      <div className="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
-        <p className="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Sign In</p>
+      <div className="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1 login-form">
+        <p>Welcome Back!</p>
+        <p className="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">LOGIN</p>
         <form className="mx-1 mx-md-4" onSubmit={handleLogin}>
           {/* Email Input */}
           <div className="mb-4">
@@ -53,7 +62,6 @@ const UserLogin = () => {
               Your Email
             </label>
             <div className="d-flex flex-row align-items-center">
-              <i className="fas fa-envelope fa-lg me-3 fa-fw"></i>
               <input
                 type="email"
                 id="email"
@@ -72,7 +80,6 @@ const UserLogin = () => {
               Password
             </label>
             <div className="d-flex flex-row align-items-center">
-              <i className="fas fa-lock fa-lg me-3 fa-fw"></i>
               <input
                 type="password"
                 id="password"
@@ -97,7 +104,7 @@ const UserLogin = () => {
 
           {/* Submit Button */}
           <div className="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
-            <button type="submit" className="btn btn-primary btn-lg">
+            <button type="submit" className="btn login-btn">
               Sign In
             </button>
           </div>
