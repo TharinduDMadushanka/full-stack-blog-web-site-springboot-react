@@ -13,6 +13,8 @@ const AddBlog = () => {
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
 
+  const userId = 1; // Replace with dynamic user ID retrieval logic
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({
@@ -44,6 +46,7 @@ const AddBlog = () => {
     data.append('content', formData.content);
     data.append('category', formData.category);
     data.append('image', formData.image);
+    data.append('userId', userId);
 
     try {
       const response = await axios.post('http://localhost:8080/api/v1/post/create-post', data, {
@@ -60,7 +63,11 @@ const AddBlog = () => {
         image: null,
       });
     } catch (error) {
-      setError('Error creating blog post. Please try again.');
+      const errorMessage =
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : 'Error creating blog post. Please try again.';
+      setError(errorMessage);
     }
   };
 
