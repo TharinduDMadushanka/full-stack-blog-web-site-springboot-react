@@ -1,8 +1,11 @@
 package lk.tdm.BlogSite.service.impl;
 
 import lk.tdm.BlogSite.dto.PostDTO;
+import lk.tdm.BlogSite.dto.UserDTO;
 import lk.tdm.BlogSite.entity.Post;
+import lk.tdm.BlogSite.entity.User;
 import lk.tdm.BlogSite.repo.PostRepo;
+import lk.tdm.BlogSite.repo.UserRepo;
 import lk.tdm.BlogSite.service.PostService;
 import lk.tdm.BlogSite.util.PostCategory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,8 +29,15 @@ public class PostServiceImpl implements PostService {
     @Autowired
     private PostRepo postRepo;
 
+    @Autowired
+    private UserRepo userRepo;
+
     @Override
-    public Post createPost(PostDTO postDTO, MultipartFile imageFile) throws IOException {
+    public Post createPost(PostDTO postDTO, UserDTO userDTO, MultipartFile imageFile) throws IOException {
+
+        User user = userRepo.findById(userDTO.getUserId())
+                .orElseThrow(() -> new RuntimeException("User not found"));
+
         PostCategory postCategory;
         try {
             postCategory = PostCategory.valueOf(postDTO.getCategory().toUpperCase());
@@ -43,6 +53,7 @@ public class PostServiceImpl implements PostService {
         post.setCategory(postCategory);
         post.setImage(imageName);
         post.setDate(new Date());
+        post.setUser(user);
 
         return postRepo.save(post);
     }

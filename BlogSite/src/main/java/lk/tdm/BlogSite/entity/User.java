@@ -2,6 +2,8 @@ package lk.tdm.BlogSite.entity;
 
 import jakarta.persistence.*;
 
+import java.util.Set;
+
 @Entity
 @Table(name = "user")
 public class User {
@@ -14,7 +16,7 @@ public class User {
     @Column(name = "user_name")
     private String userName;
 
-    @Column(name = "passord")
+    @Column(name = "password")
     private String password;
 
     @Column(name = "email")
@@ -23,6 +25,8 @@ public class User {
     @Column(name = "phone")
     private String phone;
 
+    @OneToMany(mappedBy = "user")
+    private Set<Post> posts;
 
     public User() {
     }
@@ -33,6 +37,15 @@ public class User {
         this.password = password;
         this.email = email;
         this.phone = phone;
+    }
+
+    public User(int userId, String userName, String password, String email, String phone, Set<Post> posts) {
+        this.userId = userId;
+        this.userName = userName;
+        this.password = password;
+        this.email = email;
+        this.phone = phone;
+        this.posts = posts;
     }
 
     public int getUserId() {
@@ -73,5 +86,13 @@ public class User {
 
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+
+    public Set<Post> getPosts() {
+        return posts;
+    }
+
+    public void setPosts(Set<Post> posts) {
+        this.posts = posts;
     }
 }

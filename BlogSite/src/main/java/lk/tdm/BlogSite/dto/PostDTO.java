@@ -11,6 +11,7 @@ public class PostDTO {
     private String content;
     private String category;
     private Date date;
+    private int userId;
 
     public PostDTO() {
     }
@@ -21,6 +22,15 @@ public class PostDTO {
         this.content = content;
         this.category = category;
         this.date = date;
+    }
+
+    public PostDTO(int postId, String title, String content, String category, Date date, int userId) {
+        this.postId = postId;
+        this.title = title;
+        this.content = content;
+        this.category = category;
+        this.date = date;
+        this.userId = userId;
     }
 
     public int getPostId() {
@@ -61,5 +71,13 @@ public class PostDTO {
 
     public void setDate(Date date) {
         this.date = date;
+    }
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 }

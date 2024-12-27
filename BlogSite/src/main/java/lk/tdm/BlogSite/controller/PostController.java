@@ -1,6 +1,7 @@
 package lk.tdm.BlogSite.controller;
 
 import lk.tdm.BlogSite.dto.PostDTO;
+import lk.tdm.BlogSite.dto.UserDTO;
 import lk.tdm.BlogSite.entity.Post;
 import lk.tdm.BlogSite.service.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,8 +29,9 @@ public class PostController {
     @PostMapping(path = "/create-post")
     public ResponseEntity<Post> createPost(
             @ModelAttribute PostDTO postDTO,
+            @ModelAttribute UserDTO userDTO,
             @RequestParam("image") MultipartFile image) throws IOException {
-        Post createdPost = postService.createPost(postDTO, image);
+        Post createdPost = postService.createPost(postDTO, userDTO, image);
         return ResponseEntity.ok(createdPost);
     }
 

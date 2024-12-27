@@ -1,12 +1,13 @@
 package lk.tdm.BlogSite.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lk.tdm.BlogSite.util.PostCategory;
 
 import java.util.Date;
 
 @Entity
-@Table(name = "posts")
+@Table(name = "post")
 public class Post {
 
     @Id
@@ -30,6 +31,11 @@ public class Post {
     @Column(name = "publish_date")
     private Date date;
 
+    @ManyToOne
+    @JsonIgnore
+    @JoinColumn(name = "user_id", nullable = false)
+    private User user;
+
 
     public Post() {
     }
@@ -41,6 +47,16 @@ public class Post {
         this.category = category;
         this.image = image;
         this.date = date;
+    }
+
+    public Post(int postId, String title, String content, PostCategory category, String image, Date date, User user) {
+        this.postId = postId;
+        this.title = title;
+        this.content = content;
+        this.category = category;
+        this.image = image;
+        this.date = date;
+        this.user = user;
     }
 
     public int getPostId() {
@@ -89,5 +105,13 @@ public class Post {
 
     public void setDate(Date date) {
         this.date = date;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }
