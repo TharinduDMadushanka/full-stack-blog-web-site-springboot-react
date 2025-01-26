@@ -1,0 +1,7 @@
+For text editor in AddBlog.jsx --> 
+	npm install react-quill	
+	import "react-quill/dist/quill.snow.css";
+				
+
+Display exact same thing(not like hrml code) -->
+	npm install dompurify

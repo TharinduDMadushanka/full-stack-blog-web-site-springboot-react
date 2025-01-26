@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import './BlogSpace.css';
 import axios from 'axios';
+import DOMPurify from 'dompurify'; // Ensure you sanitize the HTML for security
 
 const BlogSpace = () => {
   const { postId } = useParams(); // Extract postId from URL
@@ -39,7 +40,12 @@ const BlogSpace = () => {
         className="blog-space-image"
       />
       <div className="blog-space-content">
-        <p>{post.content}</p>
+        {/* Render HTML safely */}
+        <div
+          dangerouslySetInnerHTML={{
+            __html: DOMPurify.sanitize(post.content), // Sanitize the HTML for security
+          }}
+        ></div>
         <div className="blog-space-details">
           <span className="blog-space-category">Category: {post.category}</span>
           <span className="blog-space-date">Added on: {formatDate(post.date)}</span>

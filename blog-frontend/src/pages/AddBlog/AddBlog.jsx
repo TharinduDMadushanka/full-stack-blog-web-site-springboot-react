@@ -1,17 +1,19 @@
-import React, { useState } from 'react';
-import axios from 'axios';
-import './AddBlog.css';
+import React, { useState } from "react";
+import axios from "axios";
+import ReactQuill from "react-quill";
+// import "react-quill/dist/quill.snow.css"; // Import Quill styles
+import "./AddBlog.css";
 
 const AddBlog = () => {
   const [formData, setFormData] = useState({
-    title: '',
-    content: '',
-    category: '',
+    title: "",
+    content: "",
+    category: "",
     image: null,
   });
 
-  const [error, setError] = useState('');
-  const [success, setSuccess] = useState('');
+  const [error, setError] = useState("");
+  const [success, setSuccess] = useState("");
 
   const userId = 1; // Replace with dynamic user ID retrieval logic
 
@@ -20,6 +22,13 @@ const AddBlog = () => {
     setFormData({
       ...formData,
       [name]: value,
+    });
+  };
+
+  const handleContentChange = (value) => {
+    setFormData({
+      ...formData,
+      content: value, // Set the rich text content
     });
   };
 
@@ -34,53 +43,49 @@ const AddBlog = () => {
     e.preventDefault();
 
     if (!formData.title || !formData.content || !formData.category || !formData.image) {
-      setError('Please fill in all fields and upload an image.');
+      setError("Please fill in all fields and upload an image.");
       return;
     }
 
-    setError('');
-    setSuccess('');
+    setError("");
+    setSuccess("");
 
     const data = new FormData();
-    data.append('title', formData.title);
-    data.append('content', formData.content);
-    data.append('category', formData.category);
-    data.append('image', formData.image);
-    data.append('userId', userId);
+    data.append("title", formData.title);
+    data.append("content", formData.content);
+    data.append("category", formData.category);
+    data.append("image", formData.image);
+    data.append("userId", userId);
 
     try {
-      const response = await axios.post('http://localhost:8080/api/v1/post/create-post', data, {
+      const response = await axios.post("http://localhost:8080/api/v1/post/create-post", data, {
         headers: {
-          'Content-Type': 'multipart/form-data',
+          "Content-Type": "multipart/form-data",
         },
       });
 
-      setSuccess('Blog post created successfully!');
+      setSuccess("Blog post created successfully!");
       setFormData({
-        title: '',
-        content: '',
-        category: '',
+        title: "",
+        content: "",
+        category: "",
         image: null,
       });
     } catch (error) {
       const errorMessage =
         error.response && error.response.data.message
           ? error.response.data.message
-          : 'Error creating blog post. Please try again.';
+          : "Error creating blog post. Please try again.";
       setError(errorMessage);
     }
   };
 
   return (
-    <div className="add-blog container">
+    <div className="add-blog container pt-5">
       <h1>Add New Blog Post</h1>
-      
       <div className="add-blog-area">
-
         <form className="add-blog-form" onSubmit={handleSubmit}>
-          
           <div className="row">
-
             <div className="add-blog-left-col col-4">
               <div className="form-group">
                 <label htmlFor="title">Title</label>
@@ -93,7 +98,6 @@ const AddBlog = () => {
                   placeholder="Enter blog title"
                 />
               </div>
-
               <div className="form-group">
                 <label htmlFor="category">Category</label>
                 <select id="category" name="category" value={formData.category} onChange={handleChange}>
@@ -104,40 +108,29 @@ const AddBlog = () => {
                   <option value="TECHNOLOGY">TECHNOLOGY</option>
                 </select>
               </div>
-
               <div className="form-group">
                 <label htmlFor="image">Upload Image</label>
                 <input type="file" id="image" name="image" onChange={handleFileChange} />
               </div>
             </div>
-
             <div className="add-blog-right-col col-8">
               <div className="form-group">
                 <label htmlFor="content">Content</label>
-                <textarea
-                  id="content"
-                  name="content"
+                <ReactQuill
                   value={formData.content}
-                  onChange={handleChange}
-                  placeholder="Enter blog content"
-                >          
-                </textarea>
-              </div>  
+                  onChange={handleContentChange}
+                  placeholder="Write your blog content here..."
+                />
+              </div>
             </div>
-
           </div>
-
           {error && <p className="error-message">{error}</p>}
           {success && <p className="success-message">{success}</p>}
-
-        </form>
-
-        <button type="submit" className="submit-button">
+          <button type="submit" className="submit-button">
             Add Blog
-        </button>
-
+          </button>
+        </form>
       </div>
-
     </div>
   );
 };

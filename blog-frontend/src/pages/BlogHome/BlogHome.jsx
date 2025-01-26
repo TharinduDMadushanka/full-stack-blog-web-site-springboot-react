@@ -39,7 +39,7 @@ const BlogHome = () => {
           <p className="write-text" onClick={() => navigate('/add-blog')}>
             Write
           </p>
-          <i className="bi bi-person-circle" onClick={() =>{navigate('/user-profile')}} ></i>
+          <i className="bi bi-person-circle" onClick={() => navigate('/user-profile')}></i>
         </div>
       </div>
 
@@ -83,7 +83,12 @@ const BlogHome = () => {
                 className="blog-image"
               />
               <h3>{post.title}</h3>
-              <p>{post.content.substring(0, 100)}...</p>
+              {/* Render the content as HTML */}
+              <div
+                dangerouslySetInnerHTML={{
+                  __html: post.content.substring(0, 100), // Show a preview
+                }}
+              ></div>
               <button onClick={() => navigate(`/read-blog/${post.postId}`)}>Read More</button>
             </div>
           ))
