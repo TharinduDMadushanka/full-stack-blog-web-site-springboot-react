@@ -72,55 +72,72 @@ const AddBlog = () => {
   };
 
   return (
-    <div className="add-blog">
+    <div className="add-blog container">
       <h1>Add New Blog Post</h1>
-      <form className="add-blog-form" onSubmit={handleSubmit}>
-        <div className="form-group">
-          <label htmlFor="title">Title</label>
-          <input
-            type="text"
-            id="title"
-            name="title"
-            value={formData.title}
-            onChange={handleChange}
-            placeholder="Enter blog title"
-          />
-        </div>
+      
+      <div className="add-blog-area">
 
-        <div className="form-group">
-          <label htmlFor="content">Content</label>
-          <textarea
-            id="content"
-            name="content"
-            value={formData.content}
-            onChange={handleChange}
-            placeholder="Enter blog content"
-          ></textarea>
-        </div>
+        <form className="add-blog-form" onSubmit={handleSubmit}>
+          
+          <div className="row">
 
-        <div className="form-group">
-          <label htmlFor="category">Category</label>
-          <select id="category" name="category" value={formData.category} onChange={handleChange}>
-            <option value="">Select a category</option>
-            <option value="SPORTS">SPORTS</option>
-            <option value="TRAVELLING">TRAVELLING</option>
-            <option value="EDUCATION">EDUCATION</option>
-            <option value="TECHNOLOGY">TECHNOLOGY</option>
-          </select>
-        </div>
+            <div className="add-blog-left-col col-4">
+              <div className="form-group">
+                <label htmlFor="title">Title</label>
+                <input
+                  type="text"
+                  id="title"
+                  name="title"
+                  value={formData.title}
+                  onChange={handleChange}
+                  placeholder="Enter blog title"
+                />
+              </div>
 
-        <div className="form-group">
-          <label htmlFor="image">Upload Image</label>
-          <input type="file" id="image" name="image" onChange={handleFileChange} />
-        </div>
+              <div className="form-group">
+                <label htmlFor="category">Category</label>
+                <select id="category" name="category" value={formData.category} onChange={handleChange}>
+                  <option value="">Select a category</option>
+                  <option value="SPORTS">SPORTS</option>
+                  <option value="TRAVELLING">TRAVELLING</option>
+                  <option value="EDUCATION">EDUCATION</option>
+                  <option value="TECHNOLOGY">TECHNOLOGY</option>
+                </select>
+              </div>
 
-        {error && <p className="error-message">{error}</p>}
-        {success && <p className="success-message">{success}</p>}
+              <div className="form-group">
+                <label htmlFor="image">Upload Image</label>
+                <input type="file" id="image" name="image" onChange={handleFileChange} />
+              </div>
+            </div>
+
+            <div className="add-blog-right-col col-8">
+              <div className="form-group">
+                <label htmlFor="content">Content</label>
+                <textarea
+                  id="content"
+                  name="content"
+                  value={formData.content}
+                  onChange={handleChange}
+                  placeholder="Enter blog content"
+                >          
+                </textarea>
+              </div>  
+            </div>
+
+          </div>
+
+          {error && <p className="error-message">{error}</p>}
+          {success && <p className="success-message">{success}</p>}
+
+        </form>
 
         <button type="submit" className="submit-button">
-          Add Blog
+            Add Blog
         </button>
-      </form>
+
+      </div>
+
     </div>
   );
 };
