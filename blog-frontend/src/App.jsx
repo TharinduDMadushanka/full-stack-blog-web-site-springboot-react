@@ -8,6 +8,7 @@ import Home from './pages/Home/Home'
 import BlogHome from './pages/BlogHome/BlogHome'
 import AddBlog from './pages/AddBlog/AddBlog';
 import BlogSpace from './pages/BlogSpace/BlogSpace';
+import UserProfile from './pages/UserProfile/UserProfile';
 
 const App = () => {
   return (
@@ -22,6 +23,7 @@ const App = () => {
           <Route path='/blog-home' element={<BlogHome/>} />
           <Route path='/add-blog' element={<AddBlog/>} />
           <Route path='/read-blog/:postId' element={<BlogSpace />} />
+          <Route path='/user-profile' element={<UserProfile />} />
         </Routes>
       </BrowserRouter>
     </div>

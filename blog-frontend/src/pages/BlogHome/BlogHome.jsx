@@ -39,7 +39,7 @@ const BlogHome = () => {
           <p className="write-text" onClick={() => navigate('/add-blog')}>
             Write
           </p>
-          <i className="bi bi-person-circle"></i>
+          <i className="bi bi-person-circle" onClick={() =>{navigate('/user-profile')}} ></i>
         </div>
       </div>
 
