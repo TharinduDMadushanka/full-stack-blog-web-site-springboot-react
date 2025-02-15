@@ -36,9 +36,7 @@ const BlogHome = () => {
         <div className="nav-menu">
           <input type="text" placeholder="Search here..." />
           <i className="bi bi-pencil-square" onClick={() => navigate('/add-blog')}></i>
-          <p className="write-text" onClick={() => navigate('/add-blog')}>
-            Write
-          </p>
+          <p className="write-text" onClick={() => navigate('/add-blog')}>Write</p>
           <i className="bi bi-person-circle" onClick={() => navigate('/user-profile')}></i>
         </div>
       </div>
@@ -76,20 +74,22 @@ const BlogHome = () => {
       <div className="home-blog-area">
         {Array.isArray(posts) && posts.length > 0 ? (
           posts.map((post) => (
-            <div className="home-blog-box" key={post.postId}>
+            <div
+              className="home-blog-box"
+              key={post.postId}
+              onClick={() => navigate(`/read-blog/${post.postId}`)} // Navigate on box click
+            >
               <img
                 src={`http://localhost:8080/api/v1/post/${post.image}`}
                 alt={post.title}
                 className="blog-image"
               />
-              <h3>{post.title}</h3>
-              {/* Render the content as HTML */}
-              <div
+              <h6>{post.title}</h6>
+              {/* <div
                 dangerouslySetInnerHTML={{
                   __html: post.content.substring(0, 100), // Show a preview
                 }}
-              ></div>
-              <button onClick={() => navigate(`/read-blog/${post.postId}`)}>Read More</button>
+              ></div> */}
             </div>
           ))
         ) : (

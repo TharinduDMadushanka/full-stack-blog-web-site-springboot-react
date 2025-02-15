@@ -47,7 +47,8 @@
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    margin-left: 35px;
+    /* margin-left: 35px; */
+    position: absolute;
   }
   
   .submit-button:hover {
