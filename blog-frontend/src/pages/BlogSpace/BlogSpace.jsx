@@ -32,7 +32,7 @@ const BlogSpace = () => {
   }
 
   return (
-    <div className="blog-space">
+    <div className="blog-space container-fluid">
       <h1 className="blog-space-title">{post.title}</h1>
       <img
         src={`http://localhost:8080/api/v1/post/${post.image}`}
