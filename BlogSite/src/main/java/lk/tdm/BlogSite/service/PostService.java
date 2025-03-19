@@ -23,4 +23,6 @@ public interface PostService {
 
     Post getPostById(int id);
 
+    List<Post> getPostsByUserId(int userId);
+
 }

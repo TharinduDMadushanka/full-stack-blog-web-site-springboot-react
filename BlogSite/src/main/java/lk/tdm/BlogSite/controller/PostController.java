@@ -78,4 +78,10 @@ public class PostController {
         }
     }
 
+    @GetMapping("/get-posts-by-user/{userId}")
+    public ResponseEntity<List<Post>> getPostsByUserId(@PathVariable int userId) {
+        List<Post> posts = postService.getPostsByUserId(userId);
+        return ResponseEntity.ok(posts);
+    }
+
 }
