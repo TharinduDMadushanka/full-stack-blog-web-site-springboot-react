@@ -1,67 +1,116 @@
+.add-blog {
+  background: #121212;
+  min-height: 100vh;
+  color: #ffffff;
+  padding: 40px 20px;
+}
 
-  .add-blog-area{
-    margin-top: 50px;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-  }
+.add-blog h1 {
+  color: #42dcdb;
+  text-align: center;
+  margin-bottom: 40px;
+  text-shadow: 0 0 10px rgba(66, 220, 219, 0.3);
+}
 
-  .add-blog-left-col{
-    line-height: 30px;
-  }
-  
-  .add-blog h1 {
-    text-align: center;
-    margin-bottom: 20px;
-  }
-  
-  .add-blog-form .form-group {
-    margin-bottom: 15px;
-  }
-  
-  .add-blog-form label {
-    display: block;
-    margin-bottom: 5px;
-    font-weight: bold;
-  }
-  
-  .add-blog-form input,
-  .add-blog-form textarea,
-  .add-blog-form select {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-  }
-  
-  .add-blog-form textarea {
-    resize: vertical;
-    height: 100px;
-  }
-  
-  .submit-button {
-    width: 350px;
-    padding: 10px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    /* margin-left: 35px; */
-    position: absolute;
-  }
-  
-  .submit-button:hover {
-    background-color: #0056b3;
-  }
-  
-  .error-message {
-    color: red;
-    text-align: center;
-  }
-  
-  .success-message {
-    color: green;
-    text-align: center;
-  }
-  
+.add-blog-form {
+  background: rgba(30, 30, 30, 0.95);
+  padding: 30px;
+  border-radius: 12px;
+  border: 1px solid rgba(66, 220, 219, 0.1);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.form-group {
+  margin-bottom: 25px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 10px;
+  color: #42dcdb;
+  font-weight: 500;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  padding: 12px;
+  background: rgba(18, 18, 18, 0.95);
+  border: 1px solid rgba(66, 220, 219, 0.2);
+  border-radius: 8px;
+  color: #ffffff;
+  transition: all 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: #42dcdb;
+  box-shadow: 0 0 10px rgba(66, 220, 219, 0.2);
+}
+
+.submit-button {
+  background: #42dcdb;
+  color: #121212;
+  padding: 12px 30px;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  width: auto;
+  margin-top: 20px;
+}
+
+.submit-button:hover {
+  background: #3ac5c4;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(66, 220, 219, 0.3);
+}
+
+.error-message {
+  color: #ff6b6b;
+  text-align: center;
+  margin-top: 10px;
+}
+
+.success-message {
+  color: #42dcdb;
+  text-align: center;
+  margin-top: 10px;
+}
+
+/* React Quill Editor Styles */
+.ql-toolbar {
+  background: rgba(30, 30, 30, 0.95) !important;
+  border-color: rgba(66, 220, 219, 0.2) !important;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
+.ql-container {
+  background: rgba(18, 18, 18, 0.95) !important;
+  border-color: rgba(66, 220, 219, 0.2) !important;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+  color: #ffffff !important;
+  min-height: 200px;
+}
+
+.ql-editor {
+  color: #ffffff !important;
+}
+
+.ql-snow .ql-stroke {
+  stroke: #42dcdb !important;
+}
+
+.ql-snow .ql-fill {
+  fill: #42dcdb !important;
+}
+
+.ql-snow .ql-picker {
+  color: #42dcdb !important;
+}

@@ -9,6 +9,7 @@
     width: 100%;
     height: 100vh;
     object-fit: cover;
+    filter: brightness(0.4); /* Darken the background image */
 }
 
 .user-reg-form {
@@ -17,56 +18,79 @@
     left: 50%;
     transform: translate(-50%, -50%);
     width: 500px;
-    background: rgba(255, 255, 255, 0.8); /* Transparent white background */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Optional shadow for better appearance */
-    border-radius: 8px; /* Rounded corners */
-    padding: 30px;
+    background: rgba(18, 18, 18, 0.95);
+    box-shadow: 0 0 20px rgba(66, 220, 219, 0.2);
+    border-radius: 12px;
+    padding: 40px;
     z-index: 2;
+    border: 1px solid rgba(66, 220, 219, 0.1);
 }
 
 .user-reg-form p {
     text-align: center;
     font-weight: bold;
-    font-size: 24px;
-    color: #333;
+    font-size: 28px;
+    color: #42dcdb;
+    margin-bottom: 30px;
+    text-shadow: 0 0 10px rgba(66, 220, 219, 0.3);
 }
 
 .user-reg-form form input {
     width: 100%;
-    padding: 10px;
+    padding: 12px;
     margin-bottom: 20px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+    border: 1px solid rgba(66, 220, 219, 0.2);
+    border-radius: 8px;
+    background: rgba(30, 30, 30, 0.95);
+    color: #ffffff;
+    transition: all 0.3s ease;
 }
 
-.btn-primary {
+.user-reg-form form input:focus {
+    outline: none;
+    border-color: #42dcdb;
+    box-shadow: 0 0 10px rgba(66, 220, 219, 0.2);
+}
+
+.user-reg-form form label {
+    color: #42dcdb;
+    margin-bottom: 8px;
+    display: block;
+}
+
+.nav-sign p {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 14px;
+    color: #888;
+}
+
+.nav-sign a {
+    color: #42dcdb;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.nav-sign a:hover {
+    text-shadow: 0 0 10px rgba(66, 220, 219, 0.5);
+}
+
+.login-btn {
     width: 100%;
-    padding: 10px;
-    background-color: #007bff;
-    color: white;
+    padding: 12px;
+    background: #42dcdb;
+    color: #121212;
     border: none;
-    border-radius: 4px;
+    border-radius: 8px;
     cursor: pointer;
     font-size: 16px;
-    transition: background-color 0.3s ease;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    margin-top: 20px;
 }
 
-.btn-primary:hover {
-    background-color: #0056b3;
-}
-
-.nav-log p {
-    text-align: center;
-    margin-top: 10px;
-    font-size: 14px;
-    cursor: pointer;
-}
-
-.nav-log a {
-    color: hsla(0, 0%, 0%, 0.511);
-    text-decoration: none;
-}
-
-.nav-log a:hover {
-    text-decoration: underline;
+.login-btn:hover {
+    background: #3ac5c4;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(66, 220, 219, 0.3);
 }
