@@ -8,6 +8,7 @@ const BlogHome = () => {
   const navigate = useNavigate();
   const [posts, setPosts] = useState([]);
   const [scrollPosition, setScrollPosition] = useState(0);
+  const [selectedCategory, setSelectedCategory] = useState('All');
 
   useEffect(() => {
     const handleScroll = () => {
@@ -22,7 +23,6 @@ const BlogHome = () => {
     const fetchPosts = async () => {
       try {
         const response = await axios.get('http://localhost:8080/api/v1/post/get-all-posts');
-        console.log(response.data);
         setPosts(Array.isArray(response.data) ? response.data : []);
       } catch (error) {
         console.error('Error fetching posts:', error);
@@ -32,6 +32,14 @@ const BlogHome = () => {
 
     fetchPosts();
   }, []);
+
+  const handleFilterClick = (category) => {
+    setSelectedCategory(category);
+  };
+
+  const filteredPosts = selectedCategory === 'All'
+    ? posts
+    : posts.filter(post => post.category === selectedCategory);
 
   const userName = localStorage.getItem('username');
 
@@ -77,22 +85,17 @@ const BlogHome = () => {
 
       <div className="filter-section">
         <ul className="filter-list">
-          <li>
-            <i className="bi bi-plus"></i>
-          </li>
-          <li>All</li>
-          <li>Technology</li>
-          <li>Sports</li>
-          <li>Travel</li>
-          <li>
-            <i className="bi bi-file-plus"></i>
-          </li>
+          <li onClick={() => handleFilterClick('All')}>All</li>
+          <li onClick={() => handleFilterClick('TECHNOLOGY')}>Technology</li>
+          <li onClick={() => handleFilterClick('SPORTS')}>Sports</li>
+          <li onClick={() => handleFilterClick('TRAVELLING')}>Travel</li>
+          <li onClick={() => handleFilterClick('EDUCATION')}>Education</li>
         </ul>
       </div>
 
       <div className="home-blog-area">
-        {Array.isArray(posts) && posts.length > 0 ? (
-          posts.map((post) => (
+        {filteredPosts.length > 0 ? (
+          filteredPosts.map((post) => (
             <div
               className="home-blog-box"
               key={post.postId}
