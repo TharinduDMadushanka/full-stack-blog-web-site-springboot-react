@@ -9,7 +9,7 @@
     width: 100%;
     height: 100vh;
     object-fit: cover;
-    filter: brightness(0.4); /* Darken the background image */
+    filter: brightness(0.6); /* Slightly darkened background */
 }
 
 .user-reg-form {
@@ -18,42 +18,45 @@
     left: 50%;
     transform: translate(-50%, -50%);
     width: 500px;
-    background: rgba(18, 18, 18, 0.95);
-    box-shadow: 0 0 20px rgba(66, 220, 219, 0.2);
+    background: rgba(255, 255, 255, 0.2); /* Light transparent white */
+    backdrop-filter: blur(10px); /* Frosted glass effect */
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
     border-radius: 12px;
     padding: 40px;
     z-index: 2;
-    border: 1px solid rgba(66, 220, 219, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    height: 680px;
 }
 
 .user-reg-form p {
     text-align: center;
     font-weight: bold;
     font-size: 28px;
-    color: #42dcdb;
+    color: #ffffff;
     margin-bottom: 30px;
-    text-shadow: 0 0 10px rgba(66, 220, 219, 0.3);
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
 }
 
 .user-reg-form form input {
     width: 100%;
     padding: 12px;
     margin-bottom: 20px;
-    border: 1px solid rgba(66, 220, 219, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.4);
     border-radius: 8px;
-    background: rgba(30, 30, 30, 0.95);
+    background: rgba(255, 255, 255, 0.3);
     color: #ffffff;
     transition: all 0.3s ease;
+    backdrop-filter: blur(5px);
 }
 
 .user-reg-form form input:focus {
     outline: none;
-    border-color: #42dcdb;
-    box-shadow: 0 0 10px rgba(66, 220, 219, 0.2);
+    border-color: #ffffff;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
 }
 
 .user-reg-form form label {
-    color: #42dcdb;
+    color: #ffffff;
     margin-bottom: 8px;
     display: block;
 }
@@ -62,23 +65,23 @@
     text-align: center;
     margin-top: 20px;
     font-size: 14px;
-    color: #888;
+    color: #ffffff;
 }
 
 .nav-sign a {
-    color: #42dcdb;
+    color: #ffffff;
     text-decoration: none;
     transition: all 0.3s ease;
 }
 
 .nav-sign a:hover {
-    text-shadow: 0 0 10px rgba(66, 220, 219, 0.5);
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
 }
 
 .login-btn {
     width: 100%;
     padding: 12px;
-    background: #42dcdb;
+    background: rgba(255, 255, 255, 0.4);
     color: #121212;
     border: none;
     border-radius: 8px;
@@ -90,7 +93,7 @@
 }
 
 .login-btn:hover {
-    background: #3ac5c4;
+    background: rgba(255, 255, 255, 0.6);
     transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(66, 220, 219, 0.3);
+    box-shadow: 0 5px 15px rgba(255, 255, 255, 0.3);
 }

@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import './UserRegister.css';
 
 // import register_bg from '../../assets/register/register-bg.jpg'; 
-import register_bg from '../../assets/register/register-bg-2.jpg'; 
+import register_bg from '../../assets/register/register-bg-3.jpg'; 
 
 const UserRegister = () => {
     const navigate = useNavigate();
