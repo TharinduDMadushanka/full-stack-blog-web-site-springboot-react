@@ -7,18 +7,29 @@ import blog_home_bg from '../../assets/blog-home/blog-home-bg.jpg';
 
 const BlogHome = () => {
   const navigate = useNavigate();
-  const [posts, setPosts] = useState([]); // State to store fetched posts
+  const [posts, setPosts] = useState([]);
+  const [scrollPosition, setScrollPosition] = useState(0);
+
+  // Handle parallax effect on scroll
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrollPosition(window.pageYOffset);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   // Fetch posts from backend API
   useEffect(() => {
     const fetchPosts = async () => {
       try {
         const response = await axios.get('http://localhost:8080/api/v1/post/get-all-posts');
-        console.log(response.data); // Debugging: log the API response
+        console.log(response.data);
         setPosts(Array.isArray(response.data) ? response.data : []);
       } catch (error) {
         console.error('Error fetching posts:', error);
-        setPosts([]); // Reset to an empty array on error
+        setPosts([]);
       }
     };
 
@@ -27,7 +38,13 @@ const BlogHome = () => {
 
   return (
     <div className="blog-home">
-      <div className="blog-home-bg">
+      <div 
+        className="blog-home-bg"
+        style={{ 
+          transform: `translateY(${scrollPosition * 0.5}px)`,
+        }}
+      >
+        <div className="animated-gradient"></div>
         <img src={blog_home_bg} alt="" />
       </div>
 
@@ -36,7 +53,6 @@ const BlogHome = () => {
         <div className="nav-menu">
           <input type="text" placeholder="Search here..." />
           <i className="bi bi-pencil-square" onClick={() => navigate('/add-blog')}></i>
-          {/* <p className="write-text" onClick={() => navigate('/add-blog')}>Write</p> */}
           <i className="bi bi-person-circle" onClick={() => navigate('/user-profile')}></i>
         </div>
       </div>
@@ -77,7 +93,7 @@ const BlogHome = () => {
             <div
               className="home-blog-box"
               key={post.postId}
-              onClick={() => navigate(`/read-blog/${post.postId}`)} // Navigate on box click
+              onClick={() => navigate(`/read-blog/${post.postId}`)}
             >
               <img
                 src={`http://localhost:8080/api/v1/post/${post.image}`}
@@ -85,11 +101,6 @@ const BlogHome = () => {
                 className="blog-image"
               />
               <h6>{post.title}</h6>
-              {/* <div
-                dangerouslySetInnerHTML={{
-                  __html: post.content.substring(0, 100), // Show a preview
-                }}
-              ></div> */}
             </div>
           ))
         ) : (
