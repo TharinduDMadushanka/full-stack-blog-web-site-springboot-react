@@ -18,7 +18,7 @@ const AddBlog = () => {
 
   const navigate = useNavigate();
   const location = useLocation();
-  const userId = 1; // Replace with dynamic user ID retrieval logic
+  const userId = localStorage.getItem('userId'); // Retrieve userId from local storage
 
   useEffect(() => {
     if (location.state && location.state.post) {
@@ -76,13 +76,25 @@ const AddBlog = () => {
     data.append("userId", userId);
 
     try {
-      const response = await axios.post("http://localhost:8080/api/v1/post/create-post", data, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      });
+      let response;
+      if (location.state && location.state.post) {
+        // Update existing post
+        const postId = location.state.post.postId;
+        response = await axios.put(`http://localhost:8080/api/v1/post/update-post/${postId}`, data, {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        });
+      } else {
+        // Create new post
+        response = await axios.post("http://localhost:8080/api/v1/post/create-post", data, {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        });
+      }
 
-      setSuccess("Blog post created successfully!");
+      setSuccess("Blog post saved successfully!");
       setFormData({
         title: "",
         content: "",
@@ -98,7 +110,7 @@ const AddBlog = () => {
       const errorMessage =
         error.response && error.response.data.message
           ? error.response.data.message
-          : "Error creating blog post. Please try again.";
+          : "Error saving blog post. Please try again.";
       setError(errorMessage);
       setLoading(false); // Hide loading spinner on error
     }
