@@ -36,7 +36,7 @@ const BlogHome = () => {
         <div className="nav-menu">
           <input type="text" placeholder="Search here..." />
           <i className="bi bi-pencil-square" onClick={() => navigate('/add-blog')}></i>
-          <p className="write-text" onClick={() => navigate('/add-blog')}>Write</p>
+          {/* <p className="write-text" onClick={() => navigate('/add-blog')}>Write</p> */}
           <i className="bi bi-person-circle" onClick={() => navigate('/user-profile')}></i>
         </div>
       </div>
