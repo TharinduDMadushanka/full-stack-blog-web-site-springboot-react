@@ -1,52 +1,56 @@
 .user-profile-container {
-  max-width: 1600px;
-  margin:  auto;
-  padding: 1.5rem;
+  /* max-width: 1200px; */
+  margin: auto;
+  padding: 2rem 8rem;
   background-color: #1e1e1e; /* Dark background */
-  /* border-radius: 10px; */
-  box-shadow: 0 4px 10px rgba(255, 255, 255, 0.1);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
   color: #ddd; /* Light gray text */
-  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  font-family: 'Arial', sans-serif;
 }
 
 .profile-header {
   display: flex;
   align-items: center;
-  gap: 1rem;
-  margin-bottom: 2rem;
+  gap: 1.5rem;
+  margin-bottom: 2.5rem;
 }
 
 .profile-avatar {
-  width: 80px;
-  height: 80px;
+  width: 100px;
+  height: 100px;
   border-radius: 50%;
-  border: 2px solid #fff; /* White border for contrast */
+  border: 3px solid #fff; /* White border for contrast */
+  object-fit: cover;
 }
 
 .profile-header h2 {
   color: #fff; /* White for name */
   margin: 0;
+  font-size: 2rem;
 }
 
 .profile-header p {
   color: #bbb; /* Light gray for email */
+  font-size: 1rem;
 }
 
 .profile-menu {
   display: flex;
-  /* justify-content: space-around; */
-  margin-bottom: 2rem;
-  gap: 30px;
+  gap: 20px;
+  margin-bottom: 2.5rem;
 }
 
 .profile-menu button {
   background-color: #333; /* Dark button background */
   color: #ddd; /* Light gray text */
   border: none;
-  padding: 0.5rem 1rem;
-  border-radius: 5px;
+  padding: 0.75rem 1.5rem;
+  border-radius: 7px;
   cursor: pointer;
   transition: background-color 0.3s, transform 0.2s;
+  font-size: 1rem;
 }
 
 .profile-menu button:hover {
@@ -54,38 +58,97 @@
   transform: scale(1.05);
 }
 
+.profile-content {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
 .profile-details p {
-  margin: 0.5rem 0;
+  margin: 0.75rem 0;
   color: #ccc; /* Slightly brighter gray */
+  font-size: 1.1rem;
 }
 
 .profile-edit label {
   display: block;
-  margin-bottom: 1rem;
+  margin-bottom: 1.25rem;
   color: #bbb; /* Light gray labels */
+  font-size: 1.1rem;
 }
 
 .profile-edit input {
-  width: 100%;
-  padding: 0.5rem;
+  width: 300px;
+  padding: 0.75rem;
   background-color: #2a2a2a;
   border: 1px solid #444;
   color: #ddd;
-  border-radius: 5px;
+  border-radius: 7px;
   margin-top: 0.5rem;
+  font-size: 1rem;
+  margin-left: 40px;
 }
 
 .save-button {
   background-color: #4CAF50; /* Green save button */
   color: white;
   border: none;
-  padding: 0.5rem 1rem;
-  border-radius: 5px;
+  padding: 0.75rem 1.5rem;
+  border-radius: 7px;
   cursor: pointer;
   transition: background-color 0.3s, transform 0.2s;
+  font-size: 1rem;
 }
 
 .save-button:hover {
   background-color: #45a049;
+  transform: scale(1.05);
+}
+
+.profile-posts-section {
+  border-top: 1px solid #444;
+  padding-top: 2rem;
+}
+
+.profile-post {
+  background-color: #333;
+  padding: 1.5rem;
+  border-radius: 7px;
+  margin-bottom: 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: background-color 0.3s;
+}
+
+.profile-post:hover {
+  background-color: #444; /* Slightly lighter on hover */
+}
+
+.profile-post h4 {
+  margin: 0;
+  color: #fff;
+  font-size: 1.25rem;
+}
+
+.profile-post p {
+  margin: 0;
+  color: #bbb;
+  font-size: 1rem;
+}
+
+.profile-post button {
+  background-color: #e74c3c; /* Red delete button */
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 7px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+  font-size: 1rem;
+}
+
+.profile-post button:hover {
+  background-color: #c0392b;
   transform: scale(1.05);
 }
