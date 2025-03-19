@@ -9,6 +9,7 @@ const UserProfile = () => {
     email: "",
     phone: "",
     location: "USA",
+    profileImage: localStorage.getItem('profileImage') || "https://via.placeholder.com/80",
   });
   const [posts, setPosts] = useState([]);
   const [isEditing, setIsEditing] = useState(false);
@@ -22,7 +23,7 @@ const UserProfile = () => {
         const userResponse = await axios.get(
           `http://localhost:8080/api/v1/user/get-user-by-id/${userId}`
         );
-        setUser(userResponse.data.data);
+        setUser((prevUser) => ({ ...prevUser, ...userResponse.data.data }));
 
         const postsResponse = await axios.get(
           `http://localhost:8080/api/v1/post/get-posts-by-user/${userId}`
@@ -65,13 +66,34 @@ const UserProfile = () => {
     navigate(`/read-blog/${postId}`);
   };
 
+  const handleImageUpload = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        const imageUrl = reader.result;
+        setUser((prevUser) => ({ ...prevUser, profileImage: imageUrl }));
+        localStorage.setItem('profileImage', imageUrl);
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
   return (
     <div className="user-profile-container container-fluid">
       <div className="profile-header">
         <img
-          src="https://via.placeholder.com/80"
+          src={user.profileImage}
           alt="User Avatar"
           className="profile-avatar"
+          onClick={() => document.getElementById('profileImageUpload').click()}
+        />
+        <input
+          id="profileImageUpload"
+          type="file"
+          accept="image/*"
+          style={{ display: 'none' }}
+          onChange={handleImageUpload}
         />
         <div>
           <h2>{user.userName || "Your Name"}</h2>
@@ -149,7 +171,7 @@ const UserProfile = () => {
                   {post.title}
                 </h4>
                 <p>{new Date(post.date).toLocaleDateString()}</p>
-                <button onClick={() => handleDeletePost(post.postId)}>Delete</button>
+                <button onClick={(e) => { e.stopPropagation(); handleDeletePost(post.postId); }}>Delete</button>
               </div>
             ))
           ) : (
