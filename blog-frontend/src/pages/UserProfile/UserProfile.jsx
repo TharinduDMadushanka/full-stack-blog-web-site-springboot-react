@@ -83,7 +83,7 @@ const UserProfile = () => {
       <div className="profile-menu">
         <button onClick={() => setIsEditing(false)}>My Profile</button>
         <button onClick={() => setIsEditing(true)}>Edit Profile</button>
-        <button>Log Out</button>
+        <button onClick={() => {navigate('/user-login')}}>Log Out</button>
       </div>
 
       <div className="profile-content">
