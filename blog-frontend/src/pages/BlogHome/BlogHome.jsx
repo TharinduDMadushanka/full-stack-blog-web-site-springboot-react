@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import './BlogHome.css';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-
 import blog_home_bg from '../../assets/blog-home/blog-home-bg.jpg';
 
 const BlogHome = () => {
@@ -10,7 +9,6 @@ const BlogHome = () => {
   const [posts, setPosts] = useState([]);
   const [scrollPosition, setScrollPosition] = useState(0);
 
-  // Handle parallax effect on scroll
   useEffect(() => {
     const handleScroll = () => {
       setScrollPosition(window.pageYOffset);
@@ -20,7 +18,6 @@ const BlogHome = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Fetch posts from backend API
   useEffect(() => {
     const fetchPosts = async () => {
       try {
@@ -36,11 +33,13 @@ const BlogHome = () => {
     fetchPosts();
   }, []);
 
+  const userName = localStorage.getItem('username');
+
   return (
     <div className="blog-home">
-      <div 
+      <div
         className="blog-home-bg"
-        style={{ 
+        style={{
           transform: `translateY(${scrollPosition * 0.5}px)`,
         }}
       >
@@ -54,6 +53,10 @@ const BlogHome = () => {
           <input type="text" placeholder="Search here..." />
           <i className="bi bi-pencil-square" onClick={() => navigate('/add-blog')}></i>
           <i className="bi bi-person-circle" onClick={() => navigate('/user-profile')}></i>
+          <h6>
+            <span className="wavy-hand" role="img" aria-label="Waving hand">🤚</span>
+            <span className="username">{userName}</span>
+          </h6>
         </div>
       </div>
 
