@@ -4,6 +4,9 @@
   padding: 0 160px;
   padding-top: 50px;
   padding-bottom: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center align items */
 }
 
 .blog-space-title {
@@ -20,12 +23,15 @@
   margin-bottom: 30px;
   border-radius: 12px;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  object-fit: cover; /* Ensure the image covers the container */
 }
 
 .blog-space-content {
   line-height: 1.8;
   font-size: 1.1rem;
   color: #e0e0e0;
+  width: 100%; /* Ensure the content takes full width */
+  max-width: 800px; /* Limit the width for better readability */
 }
 
 .blog-space-details {
@@ -43,14 +49,22 @@
   border: 1px solid rgba(66, 220, 219, 0.2);
 }
 
-.edit-button{
+.edit-button {
   background: rgba(66, 220, 219, 0.1);
   color: #42dcdb;
   border: 1px solid rgba(66, 220, 219, 0.2);
   width: 80px;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
 }
 
-.back-to-home{
+.edit-button:hover {
+  background: rgba(66, 220, 219, 0.2);
+  color: #ffffff;
+}
+
+.back-to-home {
   text-decoration: none;
   color: hsla(0, 0%, 100%, 0.622);
+  margin-bottom: 20px;
 }
