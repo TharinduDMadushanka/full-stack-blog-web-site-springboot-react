@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./UserProfile.css"; // Custom CSS
+import { useNavigate } from "react-router-dom";
 
 const UserProfile = () => {
   const [user, setUser] = useState({
@@ -12,6 +13,8 @@ const UserProfile = () => {
   const [posts, setPosts] = useState([]);
   const [isEditing, setIsEditing] = useState(false);
   const userId = localStorage.getItem("userId");
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchUserData = async () => {
@@ -58,6 +61,10 @@ const UserProfile = () => {
     }
   };
 
+  const handleReadPost = (postId) => {
+    navigate(`/read-blog/${postId}`);
+  };
+
   return (
     <div className="user-profile-container container-fluid">
       <div className="profile-header">
@@ -69,6 +76,7 @@ const UserProfile = () => {
         <div>
           <h2>{user.userName || "Your Name"}</h2>
           <p>{user.email || "yourname@gmail.com"}</p>
+          <a href="" className="back-to-home" onClick={() => {navigate('/blog-home')}}>Back To Home</a>
         </div>
       </div>
 
@@ -136,8 +144,10 @@ const UserProfile = () => {
           <h3>My Blog Posts</h3>
           {posts.length > 0 ? (
             posts.map((post) => (
-              <div key={post.postId} className="profile-post">
-                <h4>{post.title}</h4>
+              <div key={post.postId} className="profile-post" onClick={() => handleReadPost(post.postId)} style={{ cursor: 'pointer' }}>
+                <h4>
+                  {post.title}
+                </h4>
                 <p>{new Date(post.date).toLocaleDateString()}</p>
                 <button onClick={() => handleDeletePost(post.postId)}>Delete</button>
               </div>
