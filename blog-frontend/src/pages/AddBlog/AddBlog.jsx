@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import ReactQuill from "react-quill";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import "./AddBlog.css";
 
 const AddBlog = () => {
@@ -17,7 +17,20 @@ const AddBlog = () => {
   const [loading, setLoading] = useState(false);
 
   const navigate = useNavigate();
+  const location = useLocation();
   const userId = 1; // Replace with dynamic user ID retrieval logic
+
+  useEffect(() => {
+    if (location.state && location.state.post) {
+      const { post } = location.state;
+      setFormData({
+        title: post.title,
+        content: post.content,
+        category: post.category,
+        image: null, // Keep image as null to allow updating
+      });
+    }
+  }, [location]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -44,8 +57,8 @@ const AddBlog = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!formData.title || !formData.content || !formData.category || !formData.image) {
-      setError("Please fill in all fields and upload an image.");
+    if (!formData.title || !formData.content || !formData.category) {
+      setError("Please fill in all fields.");
       return;
     }
 
@@ -57,7 +70,9 @@ const AddBlog = () => {
     data.append("title", formData.title);
     data.append("content", formData.content);
     data.append("category", formData.category);
-    data.append("image", formData.image);
+    if (formData.image) {
+      data.append("image", formData.image);
+    }
     data.append("userId", userId);
 
     try {
@@ -91,7 +106,7 @@ const AddBlog = () => {
 
   return (
     <div className="add-blog container-fluid pt-5">
-      <h1>Add New Blog Post</h1>
+      <h1>{location.state && location.state.post ? "Edit Blog Post" : "Add New Blog Post"}</h1>
       <div className="add-blog-area">
         <form className="add-blog-form" onSubmit={handleSubmit}>
           <div className="row">
@@ -136,7 +151,7 @@ const AddBlog = () => {
           {error && <p className="error-message">{error}</p>}
           {success && <p className="success-message">{success}</p>}
           <button type="submit" className="submit-button" disabled={loading}>
-            Add Blog
+            {location.state && location.state.post ? "Update Blog" : "Add Blog"}
           </button>
         </form>
       </div>

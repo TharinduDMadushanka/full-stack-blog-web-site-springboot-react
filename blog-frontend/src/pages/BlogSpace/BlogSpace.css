@@ -3,6 +3,7 @@
   color: #ffffff;
   padding: 0 160px;
   padding-top: 50px;
+  padding-bottom: 30px;
 }
 
 .blog-space-title {
@@ -40,4 +41,16 @@
   background: rgba(66, 220, 219, 0.1);
   color: #42dcdb;
   border: 1px solid rgba(66, 220, 219, 0.2);
+}
+
+.edit-button{
+  background: rgba(66, 220, 219, 0.1);
+  color: #42dcdb;
+  border: 1px solid rgba(66, 220, 219, 0.2);
+  width: 80px;
+}
+
+.back-to-home{
+  text-decoration: none;
+  color: hsla(0, 0%, 100%, 0.622);
 }
