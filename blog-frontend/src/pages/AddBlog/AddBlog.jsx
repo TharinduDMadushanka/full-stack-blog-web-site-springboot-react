@@ -14,6 +14,7 @@ const AddBlog = () => {
 
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const navigate = useNavigate();
   const userId = 1; // Replace with dynamic user ID retrieval logic
@@ -50,6 +51,7 @@ const AddBlog = () => {
 
     setError("");
     setSuccess("");
+    setLoading(true); // Show loading spinner
 
     const data = new FormData();
     data.append("title", formData.title);
@@ -73,14 +75,17 @@ const AddBlog = () => {
         image: null,
       });
 
-      // Navigate to the new blog post's read page
-      navigate(`/read-blog/${response.data.postId}`);
+      // Wait for 3 seconds before navigating
+      setTimeout(() => {
+        navigate(`/read-blog/${response.data.postId}`);
+      }, 3000);
     } catch (error) {
       const errorMessage =
         error.response && error.response.data.message
           ? error.response.data.message
           : "Error creating blog post. Please try again.";
       setError(errorMessage);
+      setLoading(false); // Hide loading spinner on error
     }
   };
 
@@ -130,11 +135,16 @@ const AddBlog = () => {
           </div>
           {error && <p className="error-message">{error}</p>}
           {success && <p className="success-message">{success}</p>}
-          <button type="submit" className="submit-button">
+          <button type="submit" className="submit-button" disabled={loading}>
             Add Blog
           </button>
         </form>
       </div>
+      {loading && (
+        <div className="loading-overlay">
+          <div className="spinner"></div>
+        </div>
+      )}
     </div>
   );
 };
