@@ -87,6 +87,8 @@ hr{
 .footer-icons{
     display: flex;
     gap: 50px;
+    align-items: center;
+    justify-content: center;
 }
 
 .footer-icons img{
@@ -103,6 +105,7 @@ hr{
 .copyright-text{
     color: gray;
     font-size: 14px;
+    text-align: center;
 }
 
 /* Mobile responsiveness */
