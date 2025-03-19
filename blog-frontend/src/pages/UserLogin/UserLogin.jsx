@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import './UserLogin.css'
-
-import login_bg from '../../assets/login/login-bg2.jpg'
+import './UserLogin.css';
+import login_bg from '../../assets/login/login-bg2.jpg';
 
 const UserLogin = () => {
   const [formData, setFormData] = useState({
@@ -29,15 +28,25 @@ const UserLogin = () => {
 
     try {
       const response = await axios.get(`http://localhost:8080/api/v1/user/user-login/${email}/${password}`);
-      const { data } = response;
+      console.log('Full API response:', response); // Log the entire response
 
-      
+      const userData = response.data.data; // Adjust to the correct path
+
+      // Log the user data to check its structure
+      console.log('User data:', userData);
+
+      if (userData && userData.userId && userData.userName) {
+        // Store user details in local storage
+        localStorage.setItem('userId', userData.userId);
+        localStorage.setItem('username', userData.userName);
+
         alert('Login Successful');
-        console.log('User data:', data.body);
 
         // Navigate to the desired page (e.g., dashboard) on successful login
         navigate('/blog-home');
-      
+      } else {
+        alert('Login failed: Invalid response structure');
+      }
     } catch (error) {
       console.error('Login error:', error);
       alert('Login failed: Invalid email or password');
@@ -46,7 +55,6 @@ const UserLogin = () => {
 
   return (
     <div className="user-login">
-
       <div className="login-bg-img">
         <img src={login_bg} alt="" />
       </div>
