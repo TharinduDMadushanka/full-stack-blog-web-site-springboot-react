@@ -41,7 +41,7 @@ const UserProfile = () => {
   };
 
   return (
-    <div className="user-profile-container">
+    <div className="user-profile-container container-fluid">
       <div className="profile-header">
         <img
           src="https://via.placeholder.com/80"

@@ -1,73 +1,91 @@
 .user-profile-container {
-    max-width: 600px;
-    margin: 2rem auto;
-    padding: 1rem;
-    background-color: #f9f9f9;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  }
-  
-  .profile-header {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    margin-bottom: 2rem;
-  }
-  
-  .profile-avatar {
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
-  }
-  
-  .profile-menu {
-    display: flex;
-    justify-content: space-around;
-    margin-bottom: 2rem;
-  }
-  
-  .profile-menu button {
-    background-color: #007bff;
-    color: white;
-    border: none;
-    padding: 0.5rem 1rem;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-  }
-  
-  .profile-menu button:hover {
-    background-color: #0056b3;
-  }
-  
-  .profile-details p {
-    margin: 0.5rem 0;
-  }
-  
-  .profile-edit label {
-    display: block;
-    margin-bottom: 1rem;
-  }
-  
-  .profile-edit input {
-    width: 100%;
-    padding: 0.5rem;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    margin-top: 0.5rem;
-  }
-  
-  .save-button {
-    background-color: #28a745;
-    color: white;
-    border: none;
-    padding: 0.5rem 1rem;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-  }
-  
-  .save-button:hover {
-    background-color: #218838;
-  }
-  
+  max-width: 1600px;
+  margin:  auto;
+  padding: 1.5rem;
+  background-color: #1e1e1e; /* Dark background */
+  /* border-radius: 10px; */
+  box-shadow: 0 4px 10px rgba(255, 255, 255, 0.1);
+  color: #ddd; /* Light gray text */
+  height: 100vh;
+}
+
+.profile-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.profile-avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  border: 2px solid #fff; /* White border for contrast */
+}
+
+.profile-header h2 {
+  color: #fff; /* White for name */
+  margin: 0;
+}
+
+.profile-header p {
+  color: #bbb; /* Light gray for email */
+}
+
+.profile-menu {
+  display: flex;
+  /* justify-content: space-around; */
+  margin-bottom: 2rem;
+  gap: 30px;
+}
+
+.profile-menu button {
+  background-color: #333; /* Dark button background */
+  color: #ddd; /* Light gray text */
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.profile-menu button:hover {
+  background-color: #555; /* Slightly lighter on hover */
+  transform: scale(1.05);
+}
+
+.profile-details p {
+  margin: 0.5rem 0;
+  color: #ccc; /* Slightly brighter gray */
+}
+
+.profile-edit label {
+  display: block;
+  margin-bottom: 1rem;
+  color: #bbb; /* Light gray labels */
+}
+
+.profile-edit input {
+  width: 100%;
+  padding: 0.5rem;
+  background-color: #2a2a2a;
+  border: 1px solid #444;
+  color: #ddd;
+  border-radius: 5px;
+  margin-top: 0.5rem;
+}
+
+.save-button {
+  background-color: #4CAF50; /* Green save button */
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.save-button:hover {
+  background-color: #45a049;
+  transform: scale(1.05);
+}
