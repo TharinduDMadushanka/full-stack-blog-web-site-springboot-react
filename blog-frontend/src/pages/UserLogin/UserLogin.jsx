@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import './UserLogin.css'
 
-import login_bg from '../../assets/login/login-bg.jpg'
+import login_bg from '../../assets/login/login-bg2.jpg'
 
 const UserLogin = () => {
   const [formData, setFormData] = useState({
