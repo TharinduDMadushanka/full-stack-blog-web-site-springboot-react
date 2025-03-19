@@ -85,11 +85,36 @@ const BlogHome = () => {
 
       <div className="filter-section">
         <ul className="filter-list">
-          <li onClick={() => handleFilterClick('All')}>All</li>
-          <li onClick={() => handleFilterClick('TECHNOLOGY')}>Technology</li>
-          <li onClick={() => handleFilterClick('SPORTS')}>Sports</li>
-          <li onClick={() => handleFilterClick('TRAVELLING')}>Travel</li>
-          <li onClick={() => handleFilterClick('EDUCATION')}>Education</li>
+          <li
+            className={selectedCategory === 'All' ? 'active-filter' : ''}
+            onClick={() => handleFilterClick('All')}
+          >
+            All
+          </li>
+          <li
+            className={selectedCategory === 'TECHNOLOGY' ? 'active-filter' : ''}
+            onClick={() => handleFilterClick('TECHNOLOGY')}
+          >
+            Technology
+          </li>
+          <li
+            className={selectedCategory === 'SPORTS' ? 'active-filter' : ''}
+            onClick={() => handleFilterClick('SPORTS')}
+          >
+            Sports
+          </li>
+          <li
+            className={selectedCategory === 'TRAVELLING' ? 'active-filter' : ''}
+            onClick={() => handleFilterClick('TRAVELLING')}
+          >
+            Travel
+          </li>
+          <li
+            className={selectedCategory === 'EDUCATION' ? 'active-filter' : ''}
+            onClick={() => handleFilterClick('EDUCATION')}
+          >
+            Education
+          </li>
         </ul>
       </div>
 
