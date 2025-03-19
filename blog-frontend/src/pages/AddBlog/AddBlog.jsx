@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import ReactQuill from "react-quill";
-// import "react-quill/dist/quill.snow.css"; // Import Quill styles
+import { useNavigate } from "react-router-dom";
 import "./AddBlog.css";
 
 const AddBlog = () => {
@@ -15,6 +15,7 @@ const AddBlog = () => {
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
 
+  const navigate = useNavigate();
   const userId = 1; // Replace with dynamic user ID retrieval logic
 
   const handleChange = (e) => {
@@ -71,6 +72,9 @@ const AddBlog = () => {
         category: "",
         image: null,
       });
+
+      // Navigate to the new blog post's read page
+      navigate(`/read-blog/${response.data.postId}`);
     } catch (error) {
       const errorMessage =
         error.response && error.response.data.message
@@ -81,7 +85,7 @@ const AddBlog = () => {
   };
 
   return (
-    <div className="add-blog container pt-5">
+    <div className="add-blog container-fluid pt-5">
       <h1>Add New Blog Post</h1>
       <div className="add-blog-area">
         <form className="add-blog-form" onSubmit={handleSubmit}>
